@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Slim 3</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 50px 0 0 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #aaa;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Detail Employee</h1>
+        <div>a microframework for PHP</div>
+        <table border="1">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Position</th>
+                <th>Salary</th>   
+                <th>Skills</th>
+            </thead>
+            <tbody>
+                <tr>                    
+                    <td><?php echo $jstr->name;?></td>
+                    <td><?php echo $jstr->email;?></td>
+                    <td><?php echo $jstr->phone;?></td>
+                    <td><?php echo $jstr->address;?></td>
+                    <td><?php echo $jstr->position;?></td>
+                    <td><?php echo $jstr->salary;?></td>
+                    <?php $count = count($jstr->skills);
+                        for($i=0; $i<$count; $i++):
+                            $str .= $jstr->skills[$i]->skill.", ";
+                        endfor;
+                    ?>
+                    <td><?php echo substr($str, 0, -2);?></td>
+                </tr>                
+            </tbody>
+        </table>
+        <a href="http://localhost/slim/public/listado/">Back!!!...</a>
+    </body>
+</html>

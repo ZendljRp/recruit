@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test RecruIT</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 50px 0 0 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: left;
+                color: #aaa;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>List of Employees</h1>        
+        <div>
+            <form method="GET" action="http://localhost/slim/public/listado/">
+                <input type="text" name="email" value="" />
+                <input type="submit" name="btnSend" value="Buscar" />
+            </form>            
+        </div>
+        <?php $count = count($jstr); ?>
+        <?php if($count == 1): ?>
+        <table border="1">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Ver</th>
+            </thead>
+            <tbody>                
+                <tr>
+                    <td><?php echo $jstr->name;?></td>
+                    <td><?php echo $jstr->email;?></td>
+                    <td><?php echo $jstr->position;?></td>
+                    <td><?php echo $jstr->salary;?></td>
+                    <td><a href="http://localhost/slim/public/ver/<?php echo $jstr->id; ?>">Ver</a></td>
+                </tr>               
+            </tbody>
+        </table>
+        <?php else: ?>
+        <table border="1">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Ver</th>
+            </thead>
+            <tbody>
+                <?php foreach($jstr as $employee):?>
+                <tr>
+                    <td><?php echo $employee->name;?></td>
+                    <td><?php echo $employee->email;?></td>
+                    <td><?php echo $employee->position;?></td>
+                    <td><?php echo $employee->salary;?></td>
+                    <td><a href="http://localhost/slim/public/ver/<?php echo $employee->id; ?>">Ver</a></td>
+                </tr>
+                <?php endforeach;?>                
+            </tbody>
+        </table>
+        <?php endif; ?>
+                        
+    </body>
+</html>
