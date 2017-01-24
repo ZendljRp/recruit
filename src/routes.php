@@ -42,3 +42,22 @@ $app->get('/ver/[{id}]', function ($request, $response, $args) {
     
     return $this->renderer->render($response, 'ver.phtml', compact("jstr"));
 });
+
+$app->get('/range/', function ($request, $response) {
+    $file = file_get_contents('C:\xampp\htdocs\slim\src\employees.json');
+    $pre = json_decode($file);
+    $count = count($pre);
+    $jstr   = array();
+    for($i=0; $i<$count; $i++):
+        $premount = str_replace('$', "", $pre[$i]->salary);
+        $premout  = str_replace(',', "", $premount);
+        $mount = floatval($premout);        
+        if(1000 <= $premout && 1500 >= $premout ):
+            //echo var_dump($pre[$i]);
+            array_push($jstr, $pre[$i]);
+        endif;
+        //echo ($premout. " ");
+    endfor;
+   
+    return $this->renderer->render($response, 'range.phtml', compact("jstr"));
+});
